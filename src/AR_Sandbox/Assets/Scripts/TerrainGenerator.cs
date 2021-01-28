@@ -21,15 +21,14 @@ public class TerrainGenerator : MonoBehaviour {
 	private KinectSensor sensor;
 	private CoordinateMapper mapper;
 	private DepthSourceManager manager;
-	private int frameWidth;					// The width in pixels of a frame of depth data
-	private int frameHeight;				// The height in pixels of a frame of depth data
+	
+	public int frameWidth;					// The width in pixels of a frame of depth data
+	public int frameHeight;				// The height in pixels of a frame of depth data
 
 	private const int downsampleSize = 2;	// How much to scale down the depth data. 2 = half resolution
 
-	private const bool useSensor = true;	// For debugging purposes. Uses heightmap instead of sensor data when false
-
 	void Start () {
-		sensor = KinectSensor.GetDefault ();
+		sensor = null;//KinectSensor.GetDefault ();
 
 		if (sensor != null) {
 			mapper = sensor.CoordinateMapper;
@@ -52,6 +51,14 @@ public class TerrainGenerator : MonoBehaviour {
 			if (!sensor.IsOpen) {
 				sensor.Open ();
 			}
+		}
+		else {
+			mesh = new Mesh();
+			GetComponent<MeshFilter> ().mesh = mesh;
+			frameWidth  = 100;
+			frameHeight = 100;
+			spacing = scale / frameHeight;
+			CreateMesh (frameWidth / downsampleSize, frameHeight / downsampleSize);
 		}
 	}
 
@@ -96,12 +103,12 @@ public class TerrainGenerator : MonoBehaviour {
 
 	//update the terrain mesh with height data from Kinect sensor
 	public void UpdateMesh() {
-		ushort[] heightData = manager.GetData ();
         Texture2D img = new Texture2D(frameWidth, frameHeight,TextureFormat.RGB24, false);
         
 		spacing = scale / frameHeight;
 
-		if (useSensor) {
+		if (sensor != null) {
+			ushort[] heightData = manager.GetData ();
 			// Populate vertex array using sensor data
 			for (int i = 0; i < frameHeight / downsampleSize; i++) {
 				for (int j = 0; j < frameWidth / downsampleSize; j++) {
@@ -132,7 +139,7 @@ public class TerrainGenerator : MonoBehaviour {
 	// Very slow if not using sensor data
 	public float GetHeightAtWorldPosition(Vector3 pos) {
 		ushort[] heightData;
-		if (useSensor) {
+		if (sensor != null) {
 			heightData = manager.GetData ();
 		} else {
 			Color[] pixelData = heightmap.GetPixels ();

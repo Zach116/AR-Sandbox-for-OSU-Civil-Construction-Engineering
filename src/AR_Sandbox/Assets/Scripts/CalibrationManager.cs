@@ -12,6 +12,9 @@ public class CalibrationManager : MonoBehaviour {
 
     [SerializeField]
 	Transform UIPanel; 
+	
+	[SerializeField]
+	Transform CalibrationWindow;
 
 	[SerializeField]
 	TerrainManager terrainManager;
@@ -54,8 +57,8 @@ public class CalibrationManager : MonoBehaviour {
 		//Converts position of calibration window to correspond with the terrain's world position and applies the transformation to the terrain itself
 
 		//Getting the positions of the corners of the UIPanel
-		UpperRight = UIPanel.GetChild (0).GetChild (0).transform.position;
-		LowerLeft = UIPanel.GetChild (0).GetChild (2).transform.position;
+		UpperRight = CalibrationWindow.GetChild (0).transform.position;
+		LowerLeft = CalibrationWindow.GetChild (2).transform.position;
 
 		//Getting UI positions from camera positions
 		Vector3 panelLL = mainCamera.ScreenToWorldPoint(LowerLeft);
