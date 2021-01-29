@@ -21,14 +21,14 @@ public class TerrainGenerator : MonoBehaviour {
 	private KinectSensor sensor;
 	private CoordinateMapper mapper;
 	private DepthSourceManager manager;
-	
+
 	public int frameWidth;					// The width in pixels of a frame of depth data
 	public int frameHeight;				// The height in pixels of a frame of depth data
 
 	private const int downsampleSize = 2;	// How much to scale down the depth data. 2 = half resolution
 
 	void Start () {
-		sensor = null;//KinectSensor.GetDefault ();
+		sensor = KinectSensor.GetDefault ();
 
 		if (sensor != null) {
 			mapper = sensor.CoordinateMapper;
@@ -104,7 +104,7 @@ public class TerrainGenerator : MonoBehaviour {
 	//update the terrain mesh with height data from Kinect sensor
 	public void UpdateMesh() {
         Texture2D img = new Texture2D(frameWidth, frameHeight,TextureFormat.RGB24, false);
-        
+
 		spacing = scale / frameHeight;
 
 		if (sensor != null) {
@@ -112,16 +112,16 @@ public class TerrainGenerator : MonoBehaviour {
 			// Populate vertex array using sensor data
 			for (int i = 0; i < frameHeight / downsampleSize; i++) {
 				for (int j = 0; j < frameWidth / downsampleSize; j++) {
-                    
+
                     ushort y = heightData [j * downsampleSize + frameWidth * i * downsampleSize];		// Get Y value from Kinect height data
-					float yNorm = ((float)y - maxHeight) / (minHeight - maxHeight); 					// Normalize height	
+					float yNorm = ((float)y - maxHeight) / (minHeight - maxHeight); 					// Normalize height
 					vertices [j + frameWidth / downsampleSize * i] = new Vector3 (j * spacing, yNorm * magnitude, i * spacing);
-                
+
                 }
 			}
             byte[] b = img.EncodeToPNG();
             File.WriteAllBytes(Application.dataPath + "/Resources/terrainSave.png", b);
-            
+
 		} else {
 			// Populate vertex array using placeholder heightmap for debugging
 			for (int i = 0; i < frameHeight / downsampleSize; i++) {
