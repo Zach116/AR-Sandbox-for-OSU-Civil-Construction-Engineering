@@ -8,6 +8,7 @@ using System;
 [RequireComponent(typeof(Mesh))]
 public class TerrainGenerator : MonoBehaviour {
 	public Texture2D heightmap;
+    public Texture2D heightmapFromSensor;
 	public GameObject depthSourceManager;
 	public float scale = 10;				// Size of the resulting mesh
 	public float magnitude = 1;				// Maximum height of the resulting mesh
@@ -21,7 +22,6 @@ public class TerrainGenerator : MonoBehaviour {
 	private KinectSensor sensor;
 	private CoordinateMapper mapper;
 	private DepthSourceManager manager;
-
 	public int frameWidth;					// The width in pixels of a frame of depth data
 	public int frameHeight;				// The height in pixels of a frame of depth data
 
@@ -104,25 +104,25 @@ public class TerrainGenerator : MonoBehaviour {
 	//update the terrain mesh with height data from Kinect sensor
 	public void UpdateMesh() {
         Texture2D img = new Texture2D(frameWidth, frameHeight,TextureFormat.RGB24, false);
-
+        heightmapFromSensor = new Texture2D(frameWidth, frameHeight, TextureFormat.RGB24, false);
 		spacing = scale / frameHeight;
 
 		if (sensor != null) {
 			ushort[] heightData = manager.GetData ();
-			// Populate vertex array using sensor data
-			for (int i = 0; i < frameHeight / downsampleSize; i++) {
+            // Populate vertex array using sensor data
+            for (int i = 0; i < frameHeight / downsampleSize; i++) {
 				for (int j = 0; j < frameWidth / downsampleSize; j++) {
-
                     ushort y = heightData [j * downsampleSize + frameWidth * i * downsampleSize];		// Get Y value from Kinect height data
 					float yNorm = ((float)y - maxHeight) / (minHeight - maxHeight); 					// Normalize height
 					vertices [j + frameWidth / downsampleSize * i] = new Vector3 (j * spacing, yNorm * magnitude, i * spacing);
-
+                    Color height = new Color(yNorm, yNorm, yNorm, 1);
+                    heightmapFromSensor.SetPixel(j, i, height);
                 }
 			}
             byte[] b = img.EncodeToPNG();
             File.WriteAllBytes(Application.dataPath + "/Resources/terrainSave.png", b);
-
-		} else {
+		}
+        else {
 			// Populate vertex array using placeholder heightmap for debugging
 			for (int i = 0; i < frameHeight / downsampleSize; i++) {
 				for (int j = 0; j < frameWidth / downsampleSize; j++) {
