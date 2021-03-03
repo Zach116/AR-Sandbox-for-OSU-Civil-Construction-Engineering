@@ -2365,7 +2365,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2048563955}
+      - m_Target: {fileID: 2048563950}
         m_MethodName: terrainSave
         m_Mode: 1
         m_Arguments:
@@ -7175,7 +7175,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2048563955}
+      - m_Target: {fileID: 2048563950}
         m_MethodName: terrainLoad
         m_Mode: 1
         m_Arguments:
@@ -13154,9 +13154,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a502858204dc0074aa9b150e64953e05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gen: {fileID: 17105642}
-  save: 0
-  saveInputField: {fileID: 795990920}
 --- !u!1 &2064270047
 GameObject:
   m_ObjectHideFlags: 0
