@@ -4586,7 +4586,7 @@ GameObject:
   - component: {fileID: 795990923}
   - component: {fileID: 795990922}
   m_Layer: 5
-  m_Name: Text
+  m_Name: Save InputField Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13083,6 +13083,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 634347f6ba26acd49bfa8b5078d595ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gen: {fileID: 17105642}
+  saveInputField: {fileID: 795990920}
+  save: 0
 --- !u!114 &2048563951
 MonoBehaviour:
   m_ObjectHideFlags: 0

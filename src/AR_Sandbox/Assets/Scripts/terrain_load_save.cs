@@ -6,9 +6,13 @@ using UnityEngine.UI;
 
 public class terrain_load_save : MonoBehaviour
 {
+    [SerializeField]
     public TerrainGenerator gen;
-    public bool save = false;
+
+    [SerializeField]
     public GameObject saveInputField;
+
+    public bool save = false;
 
 
     // Should only use keyboard shortcut for save and shoutl be CTRL+S, does not make sense to have a shortcut for load
