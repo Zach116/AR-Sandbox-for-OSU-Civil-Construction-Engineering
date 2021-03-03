@@ -2299,7 +2299,7 @@ GameObject:
   - component: {fileID: 354894613}
   - component: {fileID: 354894612}
   m_Layer: 5
-  m_Name: Save
+  m_Name: Save Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2365,7 +2365,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2048563950}
+      - m_Target: {fileID: 2048563955}
         m_MethodName: terrainSave
         m_Mode: 1
         m_Arguments:
@@ -3535,8 +3535,8 @@ GameObject:
   - component: {fileID: 525482781}
   - component: {fileID: 525482780}
   m_Layer: 5
-  m_Name: InputField
-  m_TagString: Untagged
+  m_Name: Save InputField
+  m_TagString: SaveInputField
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7109,7 +7109,7 @@ GameObject:
   - component: {fileID: 1126026808}
   - component: {fileID: 1126026807}
   m_Layer: 5
-  m_Name: Load
+  m_Name: Load Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7175,7 +7175,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2048563950}
+      - m_Target: {fileID: 2048563955}
         m_MethodName: terrainLoad
         m_Mode: 1
         m_Arguments:
@@ -7518,7 +7518,7 @@ GameObject:
   - component: {fileID: 1187865374}
   - component: {fileID: 1187865373}
   m_Layer: 5
-  m_Name: InputField
+  m_Name: Load InputField
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13031,6 +13031,7 @@ GameObject:
   - component: {fileID: 2048563954}
   - component: {fileID: 2048563953}
   - component: {fileID: 2048563950}
+  - component: {fileID: 2048563955}
   m_Layer: 0
   m_Name: Game_Manager
   m_TagString: Untagged
@@ -13082,8 +13083,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 634347f6ba26acd49bfa8b5078d595ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gen: {fileID: 17105642}
-  save: 0
 --- !u!114 &2048563951
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13140,6 +13139,21 @@ MonoBehaviour:
   CalibrationWindow: {fileID: 1329338265}
   terrainManager: {fileID: 1762244689}
   terrain: {fileID: 17105641}
+--- !u!114 &2048563955
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2048563947}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a502858204dc0074aa9b150e64953e05, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gen: {fileID: 17105642}
+  save: 0
+  saveInputField: {fileID: 795990920}
 --- !u!1 &2064270047
 GameObject:
   m_ObjectHideFlags: 0

@@ -2,13 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Windows;
+using UnityEngine.UI;
 
 public class terrain_load_save : MonoBehaviour
 {
     public TerrainGenerator gen;
     public bool save = false;
+    public GameObject saveInputField;
 
 
+    // Should only use keyboard shortcut for save and shoutl be CTRL+S, does not make sense to have a shortcut for load
+    /*
     // Update is called once per frame
     void Update()
     {
@@ -19,15 +23,24 @@ public class terrain_load_save : MonoBehaviour
             terrainLoad();
         }
     }
+    */
 
     public void terrainSave()
     {
-        // Save
-        Debug.Log("saving the heightmap to a file at:" + Application.dataPath + "/Output! Yay!");
-        save = false;
-        Texture2D output = gen.heightmapFromSensor;
-        byte[] b = output.EncodeToPNG();
-        File.WriteAllBytes(Application.dataPath + "/Output/output.png", b);
+      // Save
+      string filename = "output";
+
+      // Get filename from user
+      if (saveInputField.GetComponent<Text>().text != "") {
+        filename = saveInputField.GetComponent<Text>().text;
+      }
+
+      save = false;
+      Texture2D output = gen.heightmapFromSensor;
+      byte[] b = output.EncodeToPNG();
+      File.WriteAllBytes(Application.dataPath + "/Output/" + filename + ".png", b);
+
+      Debug.Log("Saved the heightmap to a file called " + filename + ".png at:" + Application.dataPath + "/Output! Yay!");
     }
 
     public void terrainLoad()
