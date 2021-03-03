@@ -44,13 +44,13 @@ public class terrain_load_save : MonoBehaviour
       byte[] b = output.EncodeToPNG();
       File.WriteAllBytes(Application.dataPath + "/Output/" + filename + ".png", b);
 
-      Debug.Log("Saved the heightmap to a file called " + filename + ".png at:" + Application.dataPath + "/Output! Yay!");
+      Debug.Log("Saved the heightmap to a file called " + filename + ".png at:" + Application.dataPath + "/Output!");
     }
 
     public void terrainLoad()
     {
         // Load
-        Debug.Log("Loading the heightmap to a file at:" + Application.dataPath + "! Yay!");
+        Debug.Log("Loading the heightmap to a file at:" + Application.dataPath + "!");
     }
 
 
