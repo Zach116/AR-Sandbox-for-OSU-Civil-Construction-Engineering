@@ -75,6 +75,7 @@
     <Compile Include="Assets\Scripts\PanelFocus.cs" />
     <Compile Include="Assets\Scripts\Road.cs" />
     <Compile Include="Assets\Scripts\RoadControlPoint.cs" />
+    <Compile Include="Assets\Scripts\terrain_load_save.cs" />
     <Compile Include="Assets\Scripts\TerrainGenerator.cs" />
     <Compile Include="Assets\Scripts\TerrainManager.cs" />
     <Compile Include="Assets\Scripts\TerrainMask.cs" />
@@ -110,6 +111,7 @@
     <None Include="Assets\Vuforia\Shaders\CameraDiffuse.shader" />
     <None Include="Assets\Vuforia\Shaders\VertexLitWithZ.shader" />
     <None Include="Assets\Shaders\StencilShader.shader" />
+    <None Include="Assets\StreamingAssets\Vuforia\db1.xml" />
     <None Include="Assets\Shaders\TerrainShader.shader" />
     <None Include="Assets\Vuforia\Shaders\VideoBackground.shader" />
     <None Include="Assets\Vuforia\Shaders\OutlineOpaque.shader" />
@@ -122,22 +124,21 @@
     <None Include="Assets\Vuforia\Shaders\ClippingMask.shader" />
     <None Include="Assets\Vuforia\Shaders\BrightTexture.shader" />
     <None Include="Assets\Vuforia\Shaders\DepthContour.shader" />
-    <None Include="Assets\StreamingAssets\Vuforia\db1.xml" />
     <None Include="Assets\Vuforia\Shaders\Text3D.shader" />
     <Reference Include="Unity.TextMeshPro.Editor">
-      <HintPath>C:/Users/DAQuser/Documents/GitHub/AR-Sandbox-for-OSU-Civil-Construction-Engineering/src/AR_Sandbox/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+      <HintPath>C:/Users/DAQuser/Documents/GitHub/AR-Sandbox-2020-2021/ARbox/src/AR_Sandbox/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.PackageManagerUI.Editor">
-      <HintPath>C:/Users/DAQuser/Documents/GitHub/AR-Sandbox-for-OSU-Civil-Construction-Engineering/src/AR_Sandbox/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
+      <HintPath>C:/Users/DAQuser/Documents/GitHub/AR-Sandbox-2020-2021/ARbox/src/AR_Sandbox/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.CollabProxy.Editor">
-      <HintPath>C:/Users/DAQuser/Documents/GitHub/AR-Sandbox-for-OSU-Civil-Construction-Engineering/src/AR_Sandbox/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
+      <HintPath>C:/Users/DAQuser/Documents/GitHub/AR-Sandbox-2020-2021/ARbox/src/AR_Sandbox/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
-      <HintPath>C:/Users/DAQuser/Documents/GitHub/AR-Sandbox-for-OSU-Civil-Construction-Engineering/src/AR_Sandbox/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+      <HintPath>C:/Users/DAQuser/Documents/GitHub/AR-Sandbox-2020-2021/ARbox/src/AR_Sandbox/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.DataPrivacy">
-      <HintPath>C:/Users/DAQuser/Documents/GitHub/AR-Sandbox-for-OSU-Civil-Construction-Engineering/src/AR_Sandbox/Library/ScriptAssemblies/Unity.Analytics.DataPrivacy.dll</HintPath>
+      <HintPath>C:/Users/DAQuser/Documents/GitHub/AR-Sandbox-2020-2021/ARbox/src/AR_Sandbox/Library/ScriptAssemblies/Unity.Analytics.DataPrivacy.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
@@ -344,13 +345,13 @@
       <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnitySpatialTracking/RuntimeEditor/UnityEngine.SpatialTracking.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.Editor">
-      <HintPath>C:/Users/DAQuser/Documents/GitHub/AR-Sandbox-for-OSU-Civil-Construction-Engineering/src/AR_Sandbox/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.Editor.dll</HintPath>
+      <HintPath>C:/Users/DAQuser/Documents/GitHub/AR-Sandbox-2020-2021/ARbox/src/AR_Sandbox/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.StandardEvents">
-      <HintPath>C:/Users/DAQuser/Documents/GitHub/AR-Sandbox-for-OSU-Civil-Construction-Engineering/src/AR_Sandbox/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.StandardEvents.dll</HintPath>
+      <HintPath>C:/Users/DAQuser/Documents/GitHub/AR-Sandbox-2020-2021/ARbox/src/AR_Sandbox/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.StandardEvents.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.Tracker">
-      <HintPath>C:/Users/DAQuser/Documents/GitHub/AR-Sandbox-for-OSU-Civil-Construction-Engineering/src/AR_Sandbox/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.Tracker.dll</HintPath>
+      <HintPath>C:/Users/DAQuser/Documents/GitHub/AR-Sandbox-2020-2021/ARbox/src/AR_Sandbox/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.Tracker.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib">
       <HintPath>C:/Program Files/Unity/Editor/Data/MonoBleedingEdge/lib/mono/unity/mscorlib.dll</HintPath>

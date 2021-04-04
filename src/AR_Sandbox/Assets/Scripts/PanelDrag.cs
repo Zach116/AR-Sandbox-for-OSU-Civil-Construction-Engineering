@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class PanelDrag : MonoBehaviour {
+public class PanelDrag : MonoBehaviour, IDragHandler {
 	private Vector3 delta;
 
 	public void BeginDrag() {
@@ -11,7 +12,7 @@ public class PanelDrag : MonoBehaviour {
 		delta.z = 0f;
 	}
 
-	public void OnDrag() {
+	public void OnDrag(PointerEventData eventDataa) {
 		transform.position = Input.mousePosition + delta;
 	}
 }

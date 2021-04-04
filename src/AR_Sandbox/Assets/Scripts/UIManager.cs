@@ -10,24 +10,32 @@ using UnityEngine.UI; //Need this for calling UI scripts
 public class UIManager : MonoBehaviour {
 
     [SerializeField]
-    Transform UIPanel; 
+    Transform UIPanel;
 
     [SerializeField]
-    Transform CutAndFillPanel; 
+    Transform CutAndFillPanel;
 
     [SerializeField]
-    Transform DesignPanel; 
+    Transform DesignPanel;
 
-	[SerializeField]
-	Transform ConfigPanel;
+  	[SerializeField]
+  	Transform ConfigPanel;
+
+    [SerializeField]
+    Transform SaveTerrainPanel;
+
+    [SerializeField]
+    Transform LoadTerrainPanel;
 
     void Start()
     {
-		//Make sure all UI panels are disabled at the start
-        UIPanel.gameObject.SetActive(false); 
+		    //Make sure all UI panels are disabled at the start
+        UIPanel.gameObject.SetActive(false);
         CutAndFillPanel.gameObject.SetActive(false);
         DesignPanel.gameObject.SetActive(false);
-		ConfigPanel.gameObject.SetActive (false);
+		    ConfigPanel.gameObject.SetActive (false);
+        SaveTerrainPanel.gameObject.SetActive(false);
+        LoadTerrainPanel.gameObject.SetActive(false);
     }
 
     void Update()
@@ -37,43 +45,73 @@ public class UIManager : MonoBehaviour {
             Pause();
         else if (Input.GetKeyDown(KeyCode.Escape) && UIPanel.gameObject.activeSelf)
             UnPause();
-		if (Input.GetKeyDown(KeyCode.Q))
-			Depth();
-		if (Input.GetKeyDown(KeyCode.W))
-			Design();
-		if (Input.GetKeyDown(KeyCode.E))
-			CutAndFill();
-		if (Input.GetKeyDown(KeyCode.R))
-			Calibrate();
+
+        if (SaveTerrainPanel.gameObject.activeSelf == false && LoadTerrainPanel.gameObject.activeSelf == false) {
+      		if (Input.GetKeyDown(KeyCode.Q))
+      			Depth();
+      		if (Input.GetKeyDown(KeyCode.W))
+      			Design();
+      		if (Input.GetKeyDown(KeyCode.E))
+      			CutAndFill();
+      		if (Input.GetKeyDown(KeyCode.R))
+      			Calibrate();
+        }
     }
 
     public void Depth()
     {
-        ModeManager.dMode = DisplayMode.Depth;
-		//Make sure windows from alternate modes don't display
-		CutAndFillPanel.gameObject.SetActive(false);
-		DesignPanel.gameObject.SetActive(false);
-		ConfigPanel.gameObject.SetActive (false);
+      ModeManager.dMode = DisplayMode.Depth;
+
+  		//Make sure windows from alternate modes don't display
+  		CutAndFillPanel.gameObject.SetActive(false);
+  		DesignPanel.gameObject.SetActive(false);
+  		ConfigPanel.gameObject.SetActive (false);
+      SaveTerrainPanel.gameObject.SetActive(false);
+      LoadTerrainPanel.gameObject.SetActive(false);
     }
 
     public void Design()
     {
         ModeManager.dMode = DisplayMode.Design;
 
-		//Make sure windows from alternate modes don't display
+		    //Make sure windows from alternate modes don't display
         DesignPanel.gameObject.SetActive(!DesignPanel.gameObject.activeSelf);
-		CutAndFillPanel.gameObject.SetActive(false);
-		ConfigPanel.gameObject.SetActive (false);
+		    CutAndFillPanel.gameObject.SetActive(false);
+		    ConfigPanel.gameObject.SetActive (false);
+        SaveTerrainPanel.gameObject.SetActive(false);
+        LoadTerrainPanel.gameObject.SetActive(false);
     }
 
     public void CutAndFill()
     {
         ModeManager.dMode = DisplayMode.CutFill;
 
-		//Make sure windows from alternate modes don't display
+		    //Make sure windows from alternate modes don't display
         CutAndFillPanel.gameObject.SetActive(!CutAndFillPanel.gameObject.activeSelf);
-		DesignPanel.gameObject.SetActive(false);
-		ConfigPanel.gameObject.SetActive (false);
+		    DesignPanel.gameObject.SetActive(false);
+		    ConfigPanel.gameObject.SetActive (false);
+        SaveTerrainPanel.gameObject.SetActive(false);
+        LoadTerrainPanel.gameObject.SetActive(false);
+    }
+
+    public void SaveTerrain()
+    {
+      //Make sure windows from alternate modes don't display
+      SaveTerrainPanel.gameObject.SetActive(true);
+  		CutAndFillPanel.gameObject.SetActive(false);
+  		DesignPanel.gameObject.SetActive(false);
+  		ConfigPanel.gameObject.SetActive (false);
+      LoadTerrainPanel.gameObject.SetActive(false);
+    }
+
+    public void LoadTerrain()
+    {
+      //Make sure windows from alternate modes don't display
+      LoadTerrainPanel.gameObject.SetActive(true);
+      SaveTerrainPanel.gameObject.SetActive(false);
+  		CutAndFillPanel.gameObject.SetActive(false);
+  		DesignPanel.gameObject.SetActive(false);
+  		ConfigPanel.gameObject.SetActive (false);
     }
 
     public void Calibrate()
@@ -81,10 +119,13 @@ public class UIManager : MonoBehaviour {
         ModeManager.dMode = DisplayMode.Calibrate;
 
 		//Make sure windows from alternate modes don't display
+		ConfigPanel.gameObject.SetActive (true);
 		CutAndFillPanel.gameObject.SetActive(false);
 		DesignPanel.gameObject.SetActive(false);
-		ConfigPanel.gameObject.SetActive (true);
+    SaveTerrainPanel.gameObject.SetActive(false);
+    LoadTerrainPanel.gameObject.SetActive(false);
     }
+
 
     public void Help()
     {
