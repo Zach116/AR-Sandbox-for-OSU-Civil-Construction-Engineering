@@ -16,18 +16,15 @@ public class terrain_load_save : MonoBehaviour
 
 
     // Should only use keyboard shortcut for save and shoutl be CTRL+S, does not make sense to have a shortcut for load
-    /*
+    
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.S)) {
+        if (Input.GetKeyDown(KeyCode.P)) {
             terrainSave();
         }
-        if (Input.GetKeyDown(KeyCode.L)) {
-            terrainLoad();
-        }
     }
-    */
+    
 
     public void terrainSave()
     {
