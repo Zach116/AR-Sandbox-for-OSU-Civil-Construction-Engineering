@@ -68,6 +68,8 @@ public class terrain_load_save : MonoBehaviour
         int h = 212;
         int w = 256;
 
+        gen.loadTerrain = true;
+
         float[,] heightData = new float[h, w];
 
         if (fileType == "png")

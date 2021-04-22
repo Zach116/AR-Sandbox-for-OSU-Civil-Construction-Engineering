@@ -15,7 +15,7 @@ public class TerrainGenerator : MonoBehaviour {
 	public float magnitude = 1;				// Maximum height of the resulting mesh
 	public float maxHeight; 				// Maximum height value from the sensor
 	public float minHeight;                 // Minimum height value from the sensor
-    public bool loadTerrain = true; // make this a public bool so that it can be changed from UI
+    public bool loadTerrain = false; // make this a public bool so that it can be changed from UI
 
     private Mesh mesh;
 	private float spacing;					// The distance between vertices in the mesh
@@ -125,13 +125,13 @@ public class TerrainGenerator : MonoBehaviour {
                         // if current height is higher than the heightmap.
                         if (heightmapFromSensor.GetPixel(j,i).r > loadedHeightmap.GetPixel(j,i).r)
                         {
-                            // show blue to lower.
+                            // show red to lower.
                             yNorm -= 1.0f;
                         }
                         // if current height is lower than the heightmap.
                         else if (heightmapFromSensor.GetPixel(j, i).r < loadedHeightmap.GetPixel(j, i).r)
                         {
-                            // show red to raise.
+                            // show blue to raise.
                             yNorm += 1.0f;
                         }
                         // if the current height is the same as the heightmap.
