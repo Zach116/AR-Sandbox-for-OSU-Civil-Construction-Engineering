@@ -24,6 +24,14 @@ public class terrain_load_save : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.P)) {
             terrainSave();
         }
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            gen.loadTerrain = true;
+        }
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            gen.loadTerrain = false;
+        }
     }
     
 
@@ -53,12 +61,12 @@ public class terrain_load_save : MonoBehaviour
     public void terrainLoad()
     {
         // Load
-        string filePath = Application.dataPath + "/Output/" + "test.png";
+        string filePath = Application.dataPath + "/Output/" + "test20.png";
         string fileType = "png";
         string mode = "16-bit";
         // height and width of the heightmap. Needs to be less than the heightmap resolution of the terrrain
-        int h = 424;
-        int w = 512;
+        int h = 212;
+        int w = 256;
 
         float[,] heightData = new float[h, w];
 
@@ -68,6 +76,8 @@ public class terrain_load_save : MonoBehaviour
             var tex = new Texture2D(h, w);
             tex.LoadImage(fileData);
 
+            //Use this if doing terrain, but we are doing heightmaps and textures now
+            /*
             for (int y = 0; y < h; y++)
             {
                 for (int x = 0; x < w; x++)
@@ -75,8 +85,13 @@ public class terrain_load_save : MonoBehaviour
                     heightData[y, x] = tex.GetPixel(y, x).r;
                 }
             }
+            */
+
+            gen.loadedHeightmap = tex;
         }
 
+        //This currently does not work because we are using textures now
+        /*
         if (fileType == "raw")
         {
             using (var file = System.IO.File.OpenRead(filePath))
@@ -106,5 +121,6 @@ public class terrain_load_save : MonoBehaviour
         }
 
         loadedTerrain.terrainData.SetHeights(0, 0, heightData);
+        */
     }
 }

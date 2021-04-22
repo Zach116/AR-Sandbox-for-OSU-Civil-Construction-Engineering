@@ -14,9 +14,10 @@ public class TerrainGenerator : MonoBehaviour {
 	public float scale = 10;				// Size of the resulting mesh
 	public float magnitude = 1;				// Maximum height of the resulting mesh
 	public float maxHeight; 				// Maximum height value from the sensor
-	public float minHeight; 				// Minimum height value from the sensor
+	public float minHeight;                 // Minimum height value from the sensor
+    public bool loadTerrain = true; // make this a public bool so that it can be changed from UI
 
-	private Mesh mesh;
+    private Mesh mesh;
 	private float spacing;					// The distance between vertices in the mesh
 	private Vector3[] vertices;
 	private int[] triangles;
@@ -107,7 +108,6 @@ public class TerrainGenerator : MonoBehaviour {
         heightmapFromSensor = new Texture2D(frameWidth/downsampleSize, frameHeight/downsampleSize, TextureFormat.RGB24, false);
 		spacing = scale / frameHeight;
 
-        bool loadTerrain = false; // make this a public bool so that it can be changed from UI
 
 		if (sensor != null) {
 			ushort[] heightData = manager.GetData ();
@@ -116,34 +116,30 @@ public class TerrainGenerator : MonoBehaviour {
             for (int i = 0; i < frameHeight / downsampleSize; i++) {
 				for (int j = 0; j < frameWidth / downsampleSize; j++) {
                     ushort y = heightData [j * downsampleSize + frameWidth * i * downsampleSize];       // Get Y value from Kinect height data
-                    float yNorm = ((float)y - maxHeight) / (minHeight - maxHeight); 					// Normalize height
+                    float yNorm = ((float)y - maxHeight) / (minHeight-maxHeight);                     // Normalize height
+                    Color height = new Color(yNorm, yNorm, yNorm, 1);
+                    heightmapFromSensor.SetPixel(j, i, height);
                     // If we are loading terrain
                     if (loadTerrain)
                     {
                         // if current height is higher than the heightmap.
-                        if (yNorm > (((maxHeight - minHeight) / 2) + minHeight))
+                        if (heightmapFromSensor.GetPixel(j,i).r > loadedHeightmap.GetPixel(j,i).r)
                         {
                             // show blue to lower.
-                            yNorm = yNorm * 0.1f;
+                            yNorm -= 1.0f;
                         }
                         // if current height is lower than the heightmap.
-                        else if (yNorm < (((maxHeight - minHeight) / 2) + minHeight))
+                        else if (heightmapFromSensor.GetPixel(j, i).r < loadedHeightmap.GetPixel(j, i).r)
                         {
                             // show red to raise.
-                            yNorm = yNorm * 1.9f;
+                            yNorm += 1.0f;
                         }
                         // if the current height is the same as the heightmap.
-                        else {
-                            // show green for good to go.
-                            yNorm = ( (maxHeight - minHeight) / 2 ) + minHeight;
-                        }
                     }
                     vertices [j + frameWidth / downsampleSize * i] = new Vector3 (j * spacing, yNorm * magnitude, i * spacing);
-                    Color height = new Color(yNorm, yNorm, yNorm, 1);
-                    heightmapFromSensor.SetPixel(j, i, height);
                 }
-			}
-		}
+            }
+        }
         else {
 			// Populate vertex array using placeholder heightmap for debugging
 			for (int i = 0; i < frameHeight / downsampleSize; i++) {

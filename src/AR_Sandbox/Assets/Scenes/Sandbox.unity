@@ -1378,6 +1378,11 @@ PrefabInstance:
       propertyPath: useSensor
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114728250063017710, guid: 0b6fc5d6fb1749140a0ddc0a9a4792c2,
+        type: 3}
+      propertyPath: loadedHeightmap
+      value: 
+      objectReference: {fileID: 2800000, guid: dc7c6fbb12176ee49a96ffd2339cafd2, type: 3}
     - target: {fileID: 4073097421626538, guid: 0b6fc5d6fb1749140a0ddc0a9a4792c2, type: 3}
       propertyPath: m_LocalPosition.x
       value: -10.3217
@@ -11154,8 +11159,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e47b401edf91d8f49a8383cc94a5c661, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  terrainGenerator: {fileID: 0}
-  terrainMask: {fileID: 0}
+  terrainGenerator: {fileID: 17105642}
+  terrainMask: {fileID: 1946019998}
 --- !u!1 &1764782818
 GameObject:
   m_ObjectHideFlags: 0
@@ -12539,6 +12544,18 @@ MonoBehaviour:
   columnOverlayContent: {fileID: 0}
   columnOverlayLines: []
   inputCell: {fileID: 0}
+--- !u!114 &1946019998 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114094754172438940, guid: 30d2d6dca7611994d873741b966354e1,
+    type: 3}
+  m_PrefabInstance: {fileID: 1691729554}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2dbd4b8bf1f7c84083a5129959b9dab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1966456485
 GameObject:
   m_ObjectHideFlags: 0
