@@ -107,7 +107,7 @@ public class TerrainGenerator : MonoBehaviour {
         heightmapFromSensor = new Texture2D(frameWidth/downsampleSize, frameHeight/downsampleSize, TextureFormat.RGB24, false);
 		spacing = scale / frameHeight;
 
-        bool loadTerrain = true; // make this a public bool so that it can be changed from UI
+        bool loadTerrain = false; // make this a public bool so that it can be changed from UI
 
 		if (sensor != null) {
 			ushort[] heightData = manager.GetData ();

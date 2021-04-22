@@ -53,12 +53,12 @@ public class terrain_load_save : MonoBehaviour
     public void terrainLoad()
     {
         // Load
-        string filePath = Application.dataPath + "/HeightMaps/" + "testing.raw";
-        string fileType = "raw";
-        string mode = "8-bit";
+        string filePath = Application.dataPath + "/Output/" + "test.png";
+        string fileType = "png";
+        string mode = "16-bit";
         // height and width of the heightmap. Needs to be less than the heightmap resolution of the terrrain
-        int h = 700;
-        int w = 700;
+        int h = 424;
+        int w = 512;
 
         float[,] heightData = new float[h, w];
 
