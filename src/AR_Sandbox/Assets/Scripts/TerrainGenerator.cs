@@ -106,9 +106,12 @@ public class TerrainGenerator : MonoBehaviour {
 	public void UpdateMesh() {
         heightmapFromSensor = new Texture2D(frameWidth/downsampleSize, frameHeight/downsampleSize, TextureFormat.RGB24, false);
 		spacing = scale / frameHeight;
-        bool loadTerrain = false; // make this a public bool so that it can be changed from UI
+
+        bool loadTerrain = true; // make this a public bool so that it can be changed from UI
+
 		if (sensor != null) {
 			ushort[] heightData = manager.GetData ();
+
             // Populate vertex array using sensor data
             for (int i = 0; i < frameHeight / downsampleSize; i++) {
 				for (int j = 0; j < frameWidth / downsampleSize; j++) {
@@ -118,21 +121,21 @@ public class TerrainGenerator : MonoBehaviour {
                     if (loadTerrain)
                     {
                         // if current height is higher than the heightmap.
-                        if (yNorm > (minHeight - maxHeight) / 2)
+                        if (yNorm > (((maxHeight - minHeight) / 2) + minHeight))
                         {
                             // show blue to lower.
-                            yNorm = minHeight * 1.1f;
+                            yNorm = yNorm * 0.1f;
                         }
                         // if current height is lower than the heightmap.
-                        else if (yNorm < (minHeight - maxHeight) / 2)
+                        else if (yNorm < (((maxHeight - minHeight) / 2) + minHeight))
                         {
                             // show red to raise.
-                            yNorm = maxHeight * 0.9f;
+                            yNorm = yNorm * 1.9f;
                         }
                         // if the current height is the same as the heightmap.
                         else {
                             // show green for good to go.
-                            yNorm = (minHeight-maxHeight)/2;
+                            yNorm = ( (maxHeight - minHeight) / 2 ) + minHeight;
                         }
                     }
                     vertices [j + frameWidth / downsampleSize * i] = new Vector3 (j * spacing, yNorm * magnitude, i * spacing);
