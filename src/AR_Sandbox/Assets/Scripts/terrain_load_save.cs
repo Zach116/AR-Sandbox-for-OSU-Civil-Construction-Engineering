@@ -11,8 +11,13 @@ public class terrain_load_save : MonoBehaviour
 
     [SerializeField]
     public GameObject saveInputField;
-
     public bool save = false;
+
+    public GameObject loadFileName;
+    public Dropdown loadFileType;
+    public Dropdown loadMode;
+    public GameObject loadHeight;
+    public GameObject loadWidth;
 
     public Terrain loadedTerrain;
 
@@ -33,7 +38,7 @@ public class terrain_load_save : MonoBehaviour
             gen.loadTerrain = false;
         }
     }
-    
+
 
     public void terrainSave()
     {
@@ -61,8 +66,8 @@ public class terrain_load_save : MonoBehaviour
     public void terrainLoad()
     {
         // Load
-        string filePath = Application.dataPath + "/Output/" + "test20.png";
-        string fileType = "png";
+        string filePath = Application.dataPath + "/Output/" + "output.png";
+        string fileType = "PNG";
         string mode = "16-bit";
         // height and width of the heightmap. Needs to be less than the heightmap resolution of the terrrain
         int h = 212;
@@ -72,7 +77,20 @@ public class terrain_load_save : MonoBehaviour
 
         float[,] heightData = new float[h, w];
 
-        if (fileType == "png")
+        // Grab user data from UI
+        if (loadFileName.GetComponent<Text>().text != "") {
+          filePath = Application.dataPath + "/Output/" + loadFileName.GetComponent<Text>().text;
+        }
+        fileType = loadFileType.options[loadFileType.value].text;
+        mode = loadMode.options[loadMode.value].text;
+        if (loadHeight.GetComponent<Text>().text != "") {
+          h = int.Parse(loadHeight.GetComponent<Text>().text);
+        }
+        if (loadWidth.GetComponent<Text>().text != "") {
+          w = int.Parse(loadWidth.GetComponent<Text>().text);
+        }
+
+        if (fileType == "PNG")
         {
             byte[] fileData = System.IO.File.ReadAllBytes(filePath);
             var tex = new Texture2D(h, w);
