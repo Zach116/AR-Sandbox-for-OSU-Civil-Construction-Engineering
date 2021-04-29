@@ -7,11 +7,16 @@ using UnityEngine.UI;
 public class terrain_load_save : MonoBehaviour
 {
     [SerializeField]
+    Transform SaveTerrainPanel;
+
+    [SerializeField]
+    Transform LoadTerrainPanel;
+
+    [SerializeField]
     public TerrainGenerator gen;
 
     [SerializeField]
     public GameObject saveInputField;
-    public bool save = false;
 
     public GameObject loadFileName;
     public Dropdown loadFileType;
@@ -21,24 +26,17 @@ public class terrain_load_save : MonoBehaviour
 
     public Terrain loadedTerrain;
 
-    // Should only use keyboard shortcut for save and shoutl be CTRL+S, does not make sense to have a shortcut for load
-
-    // Update is called once per frame
-    void Update()
+    public void Update()
     {
-        if (Input.GetKeyDown(KeyCode.P)) {
+      if (SaveTerrainPanel.gameObject.activeSelf == false && LoadTerrainPanel.gameObject.activeSelf == false) {
+        if (Input.GetKeyDown(KeyCode.S))
             terrainSave();
-        }
         if (Input.GetKeyDown(KeyCode.L))
-        {
             gen.loadTerrain = true;
-        }
         if (Input.GetKeyDown(KeyCode.Q))
-        {
             gen.loadTerrain = false;
-        }
+      }
     }
-
 
     public void terrainSave()
     {
@@ -50,7 +48,6 @@ public class terrain_load_save : MonoBehaviour
         filename = saveInputField.GetComponent<Text>().text;
       }
 
-      save = false;
       Texture2D output = gen.heightmapFromSensor;
       byte[] b = output.EncodeToPNG();
       File.WriteAllBytes(Application.dataPath + "/Output/" + filename + ".png", b);
@@ -142,5 +139,9 @@ public class terrain_load_save : MonoBehaviour
 
         loadedTerrain.terrainData.SetHeights(0, 0, heightData);
         */
+    }
+
+    public void terrainLoadStop() {
+      gen.loadTerrain = false;
     }
 }
