@@ -24,7 +24,8 @@ public class terrain_load_save : MonoBehaviour
     public GameObject loadHeight;
     public GameObject loadWidth;
 
-    public Terrain loadedTerrain;
+    //This loadedTerrain was used to do RAW files, however there was not time to implement the ability to compare the loaded terrain and current terrain
+    //public Terrain loadedTerrain;
 
     public void Update()
     {
@@ -108,6 +109,7 @@ public class terrain_load_save : MonoBehaviour
         }
 
         //This currently does not work because we are using textures now
+        //To use this feature, there needs to be a way to color the sand by comparing the loadedTerrain and current terrain
         /*
         if (fileType == "raw")
         {
