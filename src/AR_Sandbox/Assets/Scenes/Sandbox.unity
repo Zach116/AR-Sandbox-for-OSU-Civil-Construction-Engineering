@@ -5691,7 +5691,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2048563955}
+      - m_Target: {fileID: 2048563950}
         m_MethodName: terrainLoadStop
         m_Mode: 1
         m_Arguments:
@@ -9363,7 +9363,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2048563955}
+      - m_Target: {fileID: 2048563950}
         m_MethodName: terrainLoad
         m_Mode: 1
         m_Arguments:
@@ -16354,6 +16354,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 634347f6ba26acd49bfa8b5078d595ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SaveTerrainPanel: {fileID: 101736108}
+  LoadTerrainPanel: {fileID: 830029586}
+  gen: {fileID: 17105642}
+  saveInputField: {fileID: 795990920}
+  loadFileName: {fileID: 1361201154}
+  loadFileType: {fileID: 88443290}
+  loadMode: {fileID: 1076168146}
+  loadHeight: {fileID: 1132089862}
+  loadWidth: {fileID: 582985450}
+  loadedTerrain: {fileID: 1508067002}
 --- !u!114 &2048563951
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16422,16 +16432,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a502858204dc0074aa9b150e64953e05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SaveTerrainPanel: {fileID: 101736108}
-  LoadTerrainPanel: {fileID: 830029586}
-  gen: {fileID: 17105642}
-  saveInputField: {fileID: 0}
-  loadFileName: {fileID: 1361201154}
-  loadFileType: {fileID: 88443290}
-  loadMode: {fileID: 1076168146}
-  loadHeight: {fileID: 1132089862}
-  loadWidth: {fileID: 582985450}
-  loadedTerrain: {fileID: 0}
 --- !u!1 &2064270047
 GameObject:
   m_ObjectHideFlags: 0
