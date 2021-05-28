@@ -71,8 +71,6 @@ public class terrain_load_save : MonoBehaviour
         int h = 212;
         int w = 256;
 
-        gen.loadTerrain = true;
-
         float[,] heightData = new float[h, w];
 
         // Grab user data from UI
@@ -106,6 +104,8 @@ public class terrain_load_save : MonoBehaviour
             */
 
             gen.loadedHeightmap = tex;
+
+            gen.loadTerrain = true;
         }
 
         //This currently does not work because we are using textures now
@@ -140,6 +140,7 @@ public class terrain_load_save : MonoBehaviour
         }
 
         loadedTerrain.terrainData.SetHeights(0, 0, heightData);
+        gen.loadTerrain = true;
         */
     }
 
